@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+application{
+    mainClass = 'kr.co.javaex.sec23.run.Ecommerce'
+}
+
+group = 'kr.co.javaex'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+tasks.withType(JavaExec) {
+    standardInput = System.in
+}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+jar {
+    manifest {
+        attributes 'Main-Class': 'kr.co.javaex.sec23.run.Ecommerce'
+    }
+}
+
+dependencies {
+    implementation 'com.oracle.database.jdbc:ojdbc11:23.3.0.23.09'
+
+    implementation 'com.oracle.database.security:oraclepki:19.23.0.0'
+    implementation 'com.oracle.database.security:osdt_core:19.23.0.0'
+    implementation 'com.oracle.database.security:osdt_cert:19.23.0.0'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
