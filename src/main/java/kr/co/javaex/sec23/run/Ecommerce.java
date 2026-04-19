@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class Ecommerce {
     public static void main(String[] args) throws UnsupportedEncodingException {
+        System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));
         Scanner s = new Scanner(System.in);
         UserController uc = new UserController();
         CategoryController cc = new CategoryController();
@@ -76,7 +77,7 @@ public class Ecommerce {
                             }
 
                         } else if (num2 == 2) {
-                            System.out.println("1. 추가 | 2. 수정 | 3. 삭제 | 4. 판매정지 | 5. 재고관리 | 6. 품절 | 7. 목록 | 8. 종료");
+                            System.out.println("1. 추가 | 2. 수정 | 3. 삭제 | 4. 재고관리 | 5. 품절 | 6. 목록 | 7. 종료");
                             System.out.println("선택 > ");
                             int num4 = Integer.parseInt(s.nextLine());
                             if (num4 == 1) {
@@ -89,18 +90,15 @@ public class Ecommerce {
                                 System.out.println("상품 삭제를 선택하셨습니다!");
                                 pc.deleteRun();
                             } else if (num4 == 4) {
-                                System.out.println("상품 판매중지를 선택하셨습니다!");
-                                pc.stopRun();
-                            } else if (num4 == 5) {
                                 System.out.println("상품 재고관리를 선택하셨습니다!");
                                 pc.stockUpdateRun();
-                            } else if (num4 == 6) {
+                            } else if (num4 == 5) {
                                 System.out.println("상품 품절을 선택하셨습니다!");
                                 pc.outRun();
-                            } else if (num4 == 7) {
+                            } else if (num4 == 6) {
                                 System.out.println("상품 목록을 선택하셨습니다!");
                                 pc.showRun();
-                            } else if (num4 == 8) {
+                            } else if (num4 == 7) {
                                 System.out.println("이전 메뉴로 돌아갑니다.");
                                 break;
                             } else {

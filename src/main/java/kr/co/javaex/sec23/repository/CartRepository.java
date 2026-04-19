@@ -10,7 +10,7 @@ public class CartRepository {
     public List<Map<String, Object>> findByUserId(String userId) {
         List<Map<String, Object>> list = new ArrayList<>();
         String sql = "SELECT C.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE " +
-                "FROM CART C JOIN PRODUCT P ON C.PRODUCT_ID = P.PRODUCT_ID " +
+                "FROM CART C JOIN PRODUCTS P ON C.PRODUCT_ID = P.PRODUCT_ID " +
                 "WHERE C.USER_ID = ?";
 
         try (Connection conn = DBConnect.getConnection();

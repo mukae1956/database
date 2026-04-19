@@ -13,7 +13,7 @@ public class ProductService {
     public boolean addProduct(int pId, String name, String explain, int price, int stock) {
         List<Map<String, Object>> list = repo.findAll();
         for (Map<String, Object> p : list) {
-            if ((int) p.get("productId") == pId) {
+            if (p.get("productId").equals(String.valueOf(pId))) {  // String 비교로 변경
                 System.out.println("이미 있는 상품입니다.");
                 return false;
             }
@@ -45,16 +45,6 @@ public class ProductService {
         }
     }
 
-    // 판매중지 처리
-    public void stopSale(int pId) {
-        boolean result = repo.updateStatus(pId, "판매중지");
-        if (result) {
-            System.out.println("판매중지 처리되었습니다.");
-        } else {
-            System.out.println("상품을 찾을 수 없습니다.");
-        }
-    }
-
     // 재고 수량 업데이트
     public void updateStock(int pId, int newStock) {
         boolean result = repo.updateStock(pId, newStock);
@@ -75,13 +65,12 @@ public class ProductService {
         }
     }
 
-    // 상품 목록 조회 (재고 있고 판매중지 아닌 것만)
+    // 상품 목록 조회 (재고 있는 것만)
     public List<Map<String, Object>> productShow() {
         List<Map<String, Object>> result = new ArrayList<>();
         for (Map<String, Object> p : repo.findAll()) {
-            int stock = (int) p.get("productStock");
-            String status = (String) p.get("productStatus");
-            if (stock != 0 && !"판매중지".equals(status)) {
+            int stock = Integer.parseInt((String) p.get("productStock"));  // String → int 변환
+            if (stock != 0) {
                 result.add(p);
             }
         }

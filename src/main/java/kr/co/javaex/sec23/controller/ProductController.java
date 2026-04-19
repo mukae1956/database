@@ -58,16 +58,6 @@ public class ProductController {
         }
     }
 
-    // 판매 중지 controller
-    public void stopRun() {
-        try {
-            System.out.println("판매 중지할 상품 ID : ");
-            int a = Integer.parseInt(s.nextLine());
-            ps.stopSale(a);
-        } catch (Exception e) {
-            System.out.println("[오류!!]");
-        }
-    }
 
     // 재고 수량 업데이트
     public void stockUpdateRun() {

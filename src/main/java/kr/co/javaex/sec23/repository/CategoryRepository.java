@@ -9,7 +9,7 @@ public class CategoryRepository {
     // 전체 카테고리 조회
     public List<Map<String, Object>> findAll() {
         List<Map<String, Object>> list = new ArrayList<>();
-        String sql = "SELECT CATEGORY_ID, CATEGORY_NAME, PARENT_CATEGORY_ID FROM CATEGORY";
+        String sql = "SELECT CATEGORY_ID, CATEGORY_NAME, PARENT_ID FROM CATEGORY";
 
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -19,7 +19,7 @@ public class CategoryRepository {
                 Map<String, Object> row = new HashMap<>();
                 row.put("categoryId", rs.getInt("CATEGORY_ID"));
                 row.put("categoryName", rs.getString("CATEGORY_NAME"));
-                row.put("parentCategoryId", rs.getObject("PARENT_CATEGORY_ID"));
+                row.put("parentCategoryId", rs.getObject("PARENT_ID"));
                 list.add(row);
             }
 
@@ -31,7 +31,7 @@ public class CategoryRepository {
 
     // 카테고리 추가
     public boolean insert(int categoryId, String categoryName, Integer parentCategoryId) {
-        String sql = "INSERT INTO CATEGORY (CATEGORY_ID, CATEGORY_NAME, PARENT_CATEGORY_ID) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO CATEGORY (CATEGORY_ID, CATEGORY_NAME, PARENT_ID) VALUES (?, ?, ?)";
 
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
